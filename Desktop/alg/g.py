@@ -3,7 +3,7 @@ ECC_POS =([0,1,3,4,6,8,10,11,13,15], [0,2,3,5,6,9,10,12,13],
 POSITION16_5 = (11,4,1,0,0)
 ECC_POS21 = ([2,4,6,8,10,12,14,16,18,20], [2,5,6,9,10,13,14,17,18],
              [4,5,6,12,13,14,19,20], [8,9,10,11,12,13,14], [16,17,18,19,20])
-POSITION21 = (0,1,3,7,15)
+POSITION21 = (0,1,3,7,15) #расположение контрольных битов
 
 def is_bool(variable): #проверяет что вся строка в двоич сс
     new_bool = [x for x in variable if x in ["0","1"]]
@@ -83,58 +83,12 @@ def to_16bit(variable):
     bit16_len = ''.join(bit21ecc)    
     return bit16_len
 
+print("///////////////")
 
-
-def test():
-
-    num1 = 1010101010101010
-    num2 = 3459010101018101
-    num3 = "1011111011111010"
-    habra_word = "0100010000111101"
-
-    ecc1 = "111001001010101001010"
-    ecc2 = "fdfhjkdhfjdshfjkdshfljksdhfjk"
-    ecc3 = "101001101110111111110"
-    ecc4 = "0110111111101111101000000"
-    habra_word_21_test = "100110000100001011101"
-
-    print("\nCoder test")
-    
-    k = to_hamming(num1)
-    print(k)
-    try:
-        k = to_hamming(num2)
-    except ValueError as e:
-        print(e)
-    k = to_hamming(num3)
-    print(k)
-    
-    print("habra_word ", habra_word)
-    habra_word_21 = to_hamming(habra_word)
-    print(habra_word_21)
-
-    print("\nDecoder test")
-    print("Значение равно ", ecc1)
-    g = to_16bit(ecc1)
-    print(g)
-    try:
-        g = to_16bit(ecc2)
-        print(g)
-    except ValueError as e:
-        print(e)
-    print("Значение равно ", ecc3)
-    
-    g = to_16bit(ecc3)
-    print(g)
-    try:
-        g = to_16bit(ecc4)
-    except ValueError as e:
-        print(e)
-    habra_word_16b = to_16bit(habra_word_21)
-    print("habra_word 16bit ", habra_word_16b)
-
-
-    print("Проверка перевода")
-    print("Сравним хабра слова ", habra_word == habra_word_16b )
-
-test()
+word = "0100010000111101"
+print("word: ", word)
+word_21 = to_hamming(word)
+print("coded 21-bit word: ", word_21)
+word_16b = to_16bit(word_21)
+print("decoded 16-bit word: ", word_16b)
+print("check two words: ", word == word_16b )
