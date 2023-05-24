@@ -1,3 +1,4 @@
+import random
 
 p = int(input("Enter a public key p: ")) #197
 g = int(input("Enter a public key g: ")) #151
@@ -11,6 +12,35 @@ Ka = ((pow(B, a)) % p)
 Kb = ((pow(A, b)) % p)
 print("Secret key at A = ", str(Ka))
 print("Secret key at B = ", str(Kb))
+
+
+
+
+print ("Trying to encrypt message: 'БИВТ-21-10и 8 хочет автомат по АДМ'")
+message = "БИВТ-21-10и 8 хочет автомат по АДМ"
+encrypted_message = ""
+for c in message:
+    encrypted_message += chr(ord(c) + Ka)
+print("Our encrypted message: ", encrypted_message)
+
+
+print ("Now let's decrypt it")
+decrypted_message = ""
+for c in encrypted_message:
+    decrypted_message += chr(ord(c) - Ka)
+print("Our decrypted message: ", decrypted_message)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
