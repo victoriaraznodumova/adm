@@ -1,15 +1,17 @@
-import random
 
-p = input("Enter p:")
-g = input("Enter g:")
-a = random.randint(1, 100)      
-b = random.randint(1, 100)
-A = ((pow(g, a)) % p)           
+p = int(input("Enter a public key p: ")) #197
+g = int(input("Enter a public key g: ")) #151
+a = int(input("Enter a private key a: ")) #199
+b = int(input("Enter a private key b: ")) #157
+A = ((pow(g, a)) % p)
+print (A)
 B = ((pow(g, b)) % p)
+print (B)
 Ka = ((pow(B, a)) % p)
 Kb = ((pow(A, b)) % p)
 print("Secret key at A = ", str(Ka))
 print("Secret key at B = ", str(Kb))
+
 
 
 
